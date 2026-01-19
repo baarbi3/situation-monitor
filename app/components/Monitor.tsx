@@ -1,10 +1,10 @@
 import React from 'react'
-import SidebarSetup from './SidebarSetup'
+import NavMenu from './NavMenu'
 
 const Monitor = () => {
   return (
     <div>
-      <SidebarSetup/>
+      <NavMenu/>
     </div>
   )
 }
