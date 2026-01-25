@@ -16,34 +16,23 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from '@/components/ui/button'
+import PizzaCard from '../Pizza/PizzaCard'
 
 
 const PizzaTracker = () => {
   return (
-        <TabsContent value="pizza">
-          <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
+    <TabsContent value="pizza">
+<div className="mx-auto max-w-6xl px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+
+        <PizzaCard name="Dominos Pizza" link="https://maps.app.goo.gl/zYn2hREGFaCPbTPf7" />
+        <PizzaCard name="Extreme Pizza" link="https://maps.app.goo.gl/dvebN4z5ZCRzDyhs7" />
+        <PizzaCard name="District Pizza Place" link="https://maps.app.goo.gl/75qaow7zcDbUZacM9" />
+        <PizzaCard name="We, The Pizza" link="https://maps.app.goo.gl/J2eL7JNPGrWVEbxr9" />
+        <PizzaCard name="Pizzato" link="https://maps.app.goo.gl/djEgAt2MbAKdLT696" />
+        <PizzaCard name="Papa Johns Pizza" link="https://maps.app.goo.gl/e6YCrH1aSeiL2B9M7" />
+      </div>
+    </TabsContent>
   )
 }
 
