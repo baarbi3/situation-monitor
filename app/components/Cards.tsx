@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/tabs"
 import PizzaTracker from "./Tabs/PizzaTracker"
 import FlightRadar from "./Tabs/FlightRadar"
+import TwitterFeed from "./Tabs/TwitterFeed"
 
 const Cards = () => {
   return (
@@ -17,6 +18,7 @@ const Cards = () => {
       </TabsList>
       <FlightRadar />
       <PizzaTracker />
+      <TwitterFeed />
     </Tabs>
   )
 }

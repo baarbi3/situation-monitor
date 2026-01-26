@@ -1,10 +1,11 @@
-import { TabsContent } from '@radix-ui/react-tabs'
 import React from 'react'
+import UsernameLogic from '../Twitter/UsernameLogic'
+import { TabsContent } from '@/components/ui/tabs'
 
 const TwitterFeed = () => {
   return (
-    <TabsContent value="pizza">
-      Hello world
+    <TabsContent value="twitter">
+      <UsernameLogic/>
     </TabsContent>
   )
 }
