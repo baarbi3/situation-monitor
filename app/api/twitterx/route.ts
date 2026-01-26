@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     for (const usr of users) {
       const tweets = await fetchUserData(usr, 10)
       accumulator.data.push(...tweets)
-      await sleep(300)
+      await sleep(3000)
     }
 
     return NextResponse.json(accumulator)

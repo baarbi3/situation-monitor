@@ -6,6 +6,7 @@ export interface User {
   followers_count: number
   following_count: number
   verified?: boolean
+  profile_image_url: string
 }
 
 export interface Tweet {
