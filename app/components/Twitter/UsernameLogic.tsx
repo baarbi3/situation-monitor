@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import AccountInput from './AccountInput'
 import { Button } from '@/components/ui/button';
 import { ApiResponse, Tweet } from '@/lib/types/tweetTypes';

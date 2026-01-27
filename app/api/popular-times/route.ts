@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 
+interface RunApiError {
+  error: string;
+}
+
 export const runtime = "edge";
 
 export async function GET(req: Request) {
@@ -40,10 +44,15 @@ export async function GET(req: Request) {
         "Cache-Control": "s-maxage=86400, stale-while-revalidate=3600",
       },
     });
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err.message ?? "Unknown error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    // Safely handle unknown
+    let message = "Unknown error";
+    
+    if (err instanceof Error) {
+      message = err.message;
+    }
+  
+    return NextResponse.json({ error: message }, { status: 500 });
   }
+
 }
