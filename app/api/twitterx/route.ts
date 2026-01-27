@@ -1,4 +1,4 @@
-import { ApiResponse, Tweet } from "@/lib/types/tweetTypes";
+import { ApiResponse, isValidationError, Tweet } from "@/lib/types/tweetTypes";
 import { NextResponse } from "next/server";
 
 const sleep = (ms: number) =>
@@ -64,11 +64,24 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(accumulator)
-  } catch (err: any) {
-    console.error("[api] fatal error:", err);
+  } catch (err: unknown) {
+  if (isValidationError(err)) {
     return NextResponse.json(
-      { error: err.message ?? "Unknown error" },
+      { error: err.response.data.detail },
+      { status: 422 }
+    );
+  }
+
+  if (err instanceof Error) {
+    return NextResponse.json(
+      { error: err.message },
       { status: 500 }
     );
   }
+
+  return NextResponse.json(
+    { error: "Unknown error" },
+    { status: 500 }
+  );
+}
 }

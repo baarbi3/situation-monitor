@@ -40,3 +40,27 @@ export interface ApiResponse<T> {
   msg: string
   data: T[]
 }
+
+interface ValidationErrorDetail {
+  loc: string[];
+  msg: string;
+  type: string;
+}
+
+export interface ValidationErrorResponse {
+  detail: ValidationErrorDetail[];
+}
+
+
+export function isValidationError(
+  err: unknown
+): err is { response: { status: number; data: ValidationErrorResponse } } {
+  return (
+    typeof err === "object" &&
+    err !== null &&
+    "response" in err &&
+    typeof (err as any).response?.status === "number" &&
+    (err as any).response?.status === 422 &&
+    Array.isArray((err as any).response?.data?.detail)
+  );
+}

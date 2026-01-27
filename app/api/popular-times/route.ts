@@ -1,19 +1,18 @@
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export const runtime = "edge";
+
+export async function GET(req: Request) {
   try {
-    console.log("[api] incoming request");
+    const { searchParams } = new URL(req.url);
+    const url = searchParams.get("url");
 
-    const body = await req.json();
-    console.log("[api] body:", body);
-
-    const { url } = body;
     if (!url) {
-      console.error("[api] missing url");
-      return NextResponse.json({ error: "Missing url" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing url" },
+        { status: 400 }
+      );
     }
-
-    console.log("[api] calling puppeteer API");
 
     const res = await fetch(
       "https://situation-monitor-api.vercel.app/run",
@@ -24,21 +23,24 @@ export async function POST(req: Request) {
       }
     );
 
-    console.log("[api] puppeteer status:", res.status);
-
-    const text = await res.text();
-    console.log("[api] puppeteer raw response:", text);
-
     if (!res.ok) {
+      const text = await res.text();
       return NextResponse.json(
         { error: "Upstream failed", upstream: text },
         { status: 500 }
       );
     }
 
-    return NextResponse.json(JSON.parse(text));
+    const data = await res.json();
+
+    return new NextResponse(JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json",
+        // Edge cache: 24h + background refresh
+        "Cache-Control": "s-maxage=86400, stale-while-revalidate=3600",
+      },
+    });
   } catch (err: any) {
-    console.error("[api] fatal error:", err);
     return NextResponse.json(
       { error: err.message ?? "Unknown error" },
       { status: 500 }

@@ -8,28 +8,14 @@ import React from 'react'
 const FlightRadar = () => {
   return (
     <TabsContent value="radar">
-      <Card>
-        <CardHeader>
-          <CardTitle>Account</CardTitle>
-          <CardDescription>
-            Make changes to your account here. Click save when you&apos;re
-            done.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-6">
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-demo-name">Name</Label>
-            <Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-demo-username">Username</Label>
-            <Input id="tabs-demo-username" defaultValue="@peduarte" />
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button>Save changes</Button>
-        </CardFooter>
-      </Card>
+      <div className="w-full max-w-[1200px] aspect-[6/5] mx-auto">
+        <iframe
+          src="https://www.airnavradar.com/?widget=1&z=7&lat=40.78200&lng=-74.16300"
+          className="w-full h-full"
+          style={{ border: 0 }}
+          loading="lazy"
+        />
+      </div>
     </TabsContent>  
   )
 }

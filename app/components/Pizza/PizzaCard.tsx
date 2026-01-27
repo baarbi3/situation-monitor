@@ -18,10 +18,9 @@ const PizzaCard = ({ name, link }: { name: string, link: string }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
 useEffect(() => {
-  fetch("/api/popular-times", {
-    method: "POST",
+  fetch(`/api/popular-times?url=${encodeURIComponent(link)}`, {
+    method: "GET",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url: link }),
   })
     .then(res => res.json())
     .then(res => {
