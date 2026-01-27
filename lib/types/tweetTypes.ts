@@ -26,7 +26,7 @@ export interface Tweet {
   hashtags: string[]
   cashtags: string[]
   lang: string
-  media: unknown[]
+  media: string[]
   possibly_sensitive: boolean
   quote_count: number
   reply_count: number

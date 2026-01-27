@@ -1,7 +1,7 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tweet } from '@/lib/types/tweetTypes';
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { Heart, MessageCircle, Repeat2, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
@@ -44,11 +44,12 @@ const TweetCard = (props: TweetProps) => {
 
       {/* Tweet Image */}
       {tweet.media && tweet.media[0] && (
-        <div className="mb-3 rounded-2xl overflow-hidden border border-border">
+        <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-border">
           <Image
             src={tweet.media[0] || "/placeholder.svg"}
             alt="Tweet media"
-            className="w-full h-auto object-cover"
+            fill
+            className="object-cover"
           />
         </div>
       )}
