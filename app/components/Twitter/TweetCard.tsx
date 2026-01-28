@@ -17,58 +17,59 @@ const TweetCard = (props: TweetProps) => {
   }
 
   return (
-    <Card className="w-full max-w-md border border-border p-4 hover:bg-muted/50 transition-colors cursor-pointer bg-card">
+    <Card className="w-full border border-border p-3 sm:p-4 hover:bg-muted/50 transition-colors cursor-pointer bg-card">
       {/* Header with Avatar, Name, Handle, and Timestamp */}
-      <div className="flex gap-3 mb-3">
-        <Avatar>
-          <AvatarImage src={tweet.user.profile_image_url || "/placeholder.svg"} alt={tweet.user.name} />
-          <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
-        </Avatar>
+      <div className="flex gap-2 sm:gap-3 mb-3">
+        <div className="flex-shrink-0">
+          <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
+            <AvatarImage src={tweet.user.profile_image_url || "/placeholder.svg"} alt={tweet.user.name} />
+            <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+        </div>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-card-foreground hover:underline">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+            <span className="font-bold text-card-foreground hover:underline truncate">
               {tweet.user.name}
             </span>
-            <span className="text-muted-foreground">@{tweet.user.screen_name}</span>
-            <span className="text-muted-foreground">·</span>
-            <span className="text-muted-foreground text-sm">{tweet.created_at}</span>
+            <span className="text-muted-foreground text-sm sm:text-base truncate">@{tweet.user.screen_name}</span>
+            <span className="text-muted-foreground hidden sm:inline">·</span>
+            <span className="text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{tweet.created_at}</span>
           </div>
         </div>
       </div>
 
       {/* Tweet Content */}
-      <div className="mb-3 text-card-foreground text-base leading-normal break-words">
+      <div className="mb-3 text-card-foreground text-sm sm:text-base leading-relaxed break-words">
         {tweet.text}
       </div>
 
       {/* Tweet Image */}
       {tweet.media && tweet.media[0] && (
-        <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-border">
-          <Image
+        <div className="mb-3 rounded-2xl overflow-hidden border border-border">
+          <img
             src={tweet.media[0] || "/placeholder.svg"}
             alt="Tweet media"
-            fill
-            className="object-cover"
+            className="w-full h-auto object-cover"
           />
         </div>
       )}
 
       {/* Engagement Stats */}
-      <div className="flex gap-4 mb-3 py-3 border-t border-b border-border text-sm text-muted-foreground">
-        <span className="hover:text-primary cursor-pointer">
+      <div className="flex flex-wrap gap-2 sm:gap-4 mb-3 py-2 sm:py-3 border-t border-b border-border text-xs sm:text-sm text-muted-foreground">
+        <span className="hover:text-primary cursor-pointer whitespace-nowrap">
           {tweet.reply_count} {tweet.reply_count === 1 ? 'Reply' : 'Replies'}
         </span>
-        <span className="hover:text-primary cursor-pointer">
+        <span className="hover:text-primary cursor-pointer whitespace-nowrap">
           {tweet.retweet_count} {tweet.retweet_count === 1 ? 'Retweet' : 'Retweets'}
         </span>
-        <span className="hover:text-destructive cursor-pointer">
+        <span className="hover:text-destructive cursor-pointer whitespace-nowrap">
           {tweet.favorite_count} {tweet.favorite_count === 1 ? 'Like' : 'Likes'}
         </span>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-between text-muted-foreground">
+      <div className="flex justify-between gap-1 sm:gap-2 text-muted-foreground">
         <Button
           variant="ghost"
           size="sm"
@@ -105,6 +106,7 @@ const TweetCard = (props: TweetProps) => {
       </div>
     </Card>
   )
+
 }
 
 export default TweetCard

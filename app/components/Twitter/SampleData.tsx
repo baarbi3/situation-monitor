@@ -1,4 +1,4 @@
-export const demoData =     {
+export const demoData = {
       "tweet_id": "1803006263529541838",
       "text": "<string>",
       "created_at": "Mon Jun 17 03:51:48 +0000 2024",
