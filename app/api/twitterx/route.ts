@@ -115,6 +115,9 @@ export async function GET(req: Request) {
         accumulator.data.push(...tweets)
         await sleep(3000)
       }
+      const toTime = (t: Tweet) => new Date(t.created_at).getTime()
+      accumulator.data.sort((a, b) => toTime(b) - toTime(a))
+
 
       return NextResponse.json(accumulator)
   } catch (err: unknown) {
