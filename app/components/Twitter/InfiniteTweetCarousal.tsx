@@ -1,5 +1,5 @@
 import { ApiResponse, Tweet } from '@/lib/types/tweetTypes'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -20,6 +20,28 @@ const InfiniteTweetCarousal = () => {
         demoData
       ]
     })
+
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+      async function callTweets() {
+        setLoading(true)
+        try {
+          const res = await fetch("/api/twitterx")
+          if (!res.ok) throw new Error(await res.text())
+          const json: ApiResponse<Tweet> = await res.json()
+          setData(json)
+        } catch (err) {
+          console.error(err)
+        } finally {
+          setLoading(false)
+        }
+      }
+    
+      callTweets()
+    }, [])
+
+    
   return (
     <Carousel opts={{ align: "start" }}  plugins={[
         Autoplay({
