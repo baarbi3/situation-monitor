@@ -4,10 +4,12 @@ import { PolyTypes } from '@/lib/types/polyTypes';
 import React, { useEffect, useState } from 'react'
 import PolyCard from './PolyCard';
 import { demoData } from './demoData';
+import { Skeleton } from '@/components/ui/skeleton';
+import PolyCardSkeleton from './PolyCardSkeleton';
 
 const PolyMain = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<PolyTypes[]>([demoData]);
+  const [data, setData] = useState<PolyTypes[]>();
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -33,11 +35,20 @@ const PolyMain = () => {
   
   return (
     <div className='flex flex-col gap-6'>
-      {data.map(header => (
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <PolyCard header={header} key={header.id}/>
-        </div>
-      ))}
+
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {loading ? (
+          <>
+          <PolyCardSkeleton/>
+          </>
+        ) : (
+          <>
+            {data && data.map(header => (
+              <PolyCard header={header} key={header.id}/>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   )
 }
