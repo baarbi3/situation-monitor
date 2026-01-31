@@ -1,3 +1,4 @@
+"use client"
 import { ApiResponse, Tweet } from '@/lib/types/tweetTypes'
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
