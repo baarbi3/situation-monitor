@@ -27,8 +27,12 @@ const InfiniteTweetCarousal = () => {
       async function callTweets() {
         setLoading(true)
         try {
-          const res = await fetch("/api/twitterx")
-          if (!res.ok) throw new Error(await res.text())
+      const res = await fetch(`${window.location.origin}/api/nitter`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ users: ["Conflict_Radar", "Natsecjeff", "sentdefender", "Osint613", "MenchOsint"] })
+      })
+        if (!res.ok) throw new Error(await res.text())
           const json: ApiResponse<Tweet> = await res.json()
           setData(json)
         } catch (err) {
