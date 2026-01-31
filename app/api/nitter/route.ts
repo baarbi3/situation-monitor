@@ -8,11 +8,19 @@ const fetchUserTweets = async (
   count = 15
 ): Promise<Tweet[]> => {
   try {
-    const response = await fetch("http://situation-monitor-api.vercel.app/nitter", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: [username] }) // <- wrap in array
-    });
+    const response = await fetch(
+      "http://situation-monitor-api.vercel.app/nitter",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: [username] }),
+        next: {
+          revalidate: 60 * 60 * 3,
+          tags: [`nitter:${username}`]
+        }
+      }
+    );
+
 
     if (!response.ok) {
       console.warn(`Failed to fetch ${username}: HTTP ${response.status}`);
