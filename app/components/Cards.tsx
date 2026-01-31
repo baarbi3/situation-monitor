@@ -14,7 +14,7 @@ const Cards = () => {
       <TabsList
         className="mx-auto h-16 w-full max-w-md rounded-2xl bg-muted grid grid-cols-4 gap-2 px-2"
       >
-        <TabsTrigger value="twitter">Twitter Feed</TabsTrigger>
+        <TabsTrigger value="twitter">News Feed</TabsTrigger>
         <TabsTrigger value="radar">Flight Radar</TabsTrigger>
         <TabsTrigger value="pizza">Pizza Tracker</TabsTrigger>
         <TabsTrigger value="polymarket">Polymarket</TabsTrigger>

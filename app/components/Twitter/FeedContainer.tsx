@@ -5,7 +5,7 @@ const FeedContainer = () => {
 return (
   <div className="flex flex-col gap-6">
     {/* 1. Carousel at the very top */}
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <InfiniteTweetCarousal />
     </div>
     <NewsAPI/>

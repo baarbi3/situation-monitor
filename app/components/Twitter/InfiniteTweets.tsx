@@ -12,7 +12,8 @@ export interface InfiniteCardProps{
 }
 const InfiniteTweets = ({ tweet }: InfiniteCardProps) => {
   return (
-    <Card className="mx-auto w-full max-w-sm">
+// Added overflow-hidden and min-w-0
+<Card className="mx-auto w-full max-w-sm overflow-hidden min-w-0">
       <CardHeader className="space-y-0 pb-2">
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
@@ -43,9 +44,9 @@ const InfiniteTweets = ({ tweet }: InfiniteCardProps) => {
     </CardContent>
 
      <CardFooter className="flex items-center justify-between">
-      <p className="text-muted-foreground text-xs">🔴 Breaking</p>
+      <p className="text-muted-foreground text-xs">🟢 New</p>
       
-      <Button variant="outline" size="icon" className="rounded-full p-2" asChild>
+      <Button variant="outline" size="icon" className="rounded-full p-2 mb-2" asChild>
         <Link
           href={`https://x.com/${tweet.user.screen_name}/status/${tweet.tweet_id}`}
           className="flex items-center justify-center"

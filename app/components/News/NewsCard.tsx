@@ -35,7 +35,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
         )}
 
         <div className="flex-1 flex flex-col justify-between">
-          <CardHeader>
+          <CardHeader className="pt-4">
             <CardTitle>{article.title}</CardTitle>
             <CardDescription>{article.description}</CardDescription>
           </CardHeader>
