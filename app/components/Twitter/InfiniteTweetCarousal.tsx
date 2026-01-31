@@ -23,6 +23,21 @@ const InfiniteTweetCarousal = () => {
 
     const [loading, setLoading] = useState(false)
 
+function dedupeTweets(response: ApiResponse<Tweet>): ApiResponse<Tweet> {
+  const seen = new Set<string>();
+
+  return {
+    ...response,
+    data: response.data.filter(t => {
+      const key = t.tweet_id;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }),
+  };
+}
+
+
     useEffect(() => {
       async function callTweets() {
         setLoading(true)
@@ -34,7 +49,7 @@ const InfiniteTweetCarousal = () => {
       })
         if (!res.ok) throw new Error(await res.text())
           const json: ApiResponse<Tweet> = await res.json()
-          setData(json)
+          setData(dedupeTweets(json))
         } catch (err) {
           console.error(err)
         } finally {

@@ -8,7 +8,7 @@ const fetchUserTweets = async (
   count = 15
 ): Promise<Tweet[]> => {
   try {
-    const response = await fetch("http://localhost:3000/nitter", {
+    const response = await fetch("http://situation-monitor-api.vercel.app/nitter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: [username] }) // <- wrap in array

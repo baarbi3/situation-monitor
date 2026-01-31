@@ -16,7 +16,7 @@ const InfiniteTweets = ({ tweet }: InfiniteCardProps) => {
       <CardHeader className="space-y-0 pb-2">
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={tweet.user.profile_image_url} />
+            <AvatarImage src={`https://unavatar.io/x/${tweet.user.screen_name}`} />
             <AvatarFallback>
               {tweet.user.screen_name[0].toUpperCase()}
             </AvatarFallback>
