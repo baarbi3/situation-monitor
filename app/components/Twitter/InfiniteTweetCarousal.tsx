@@ -12,13 +12,13 @@ import {
 import InfiniteTweets from './InfiniteTweets'
 import { demoData } from './SampleData'
 import Autoplay from "embla-carousel-autoplay"
+import InfiniteTweetsSkeleton from './InfiniteTweetsSkeleton'
 
 const InfiniteTweetCarousal = () => {
     const [data, setData] = useState<ApiResponse<Tweet>>({
       code: 200,
       msg: "success",
       data: [
-        demoData
       ]
     })
 
@@ -68,17 +68,26 @@ const InfiniteTweetCarousal = () => {
           delay: 2000,
         }),
       ]} className="w-full max-w-7xl mx-auto">
-      <CarouselContent>
-        {data.data.map(tweet => (
-          <CarouselItem
-            key={tweet.tweet_id}
-            className="basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-          >
-            <InfiniteTweets tweet={tweet} />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-
+      { loading ? 
+      (<>
+      <CarouselItem className="basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+        <InfiniteTweetsSkeleton/>
+      </CarouselItem>
+      </>)
+      :
+      (<>
+        <CarouselContent>
+          {data && data.data.map(tweet => (
+            <CarouselItem
+              key={tweet.tweet_id}
+              className="basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+            >
+              <InfiniteTweets tweet={tweet} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        </>
+      )}
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>

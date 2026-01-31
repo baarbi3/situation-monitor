@@ -17,7 +17,7 @@ interface NewsCardProps {
 
 const NewsCard = ({ article }: NewsCardProps) => {
   return (
-    <Link href={article.link} className="w-full max-w-3xl">
+    <Link href={article.link} className="w-full max-w-3xl" target='_blank'>
       <Card
         className="cursor-pointer hover:shadow-xl transition-shadow duration-200 flex flex-col md:flex-row gap-4 m-2"
       >

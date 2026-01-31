@@ -1,29 +1,25 @@
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
-import PizzaTracker from "./Tabs/PizzaTracker"
-import FlightRadar from "./Tabs/FlightRadar"
-import TwitterFeed from "./Tabs/TwitterFeed"
-import PolymarketPredictions from "./Tabs/PolymarketPredictions"
+import { TabsContent } from '@/components/ui/tabs'
+import FlightRadar from './Tabs/FlightRadar'
+import PizzaTracker from './Tabs/PizzaTracker'
+import PolymarketPredictions from './Tabs/PolymarketPredictions'
+import TwitterFeed from './Tabs/TwitterFeed'
 
 const Cards = () => {
   return (
-    <Tabs defaultValue="polymarket">
-      <TabsList
-        className="mx-auto h-16 w-full max-w-md rounded-2xl bg-muted grid grid-cols-4 gap-2 px-2"
-      >
-        <TabsTrigger value="twitter">News Feed</TabsTrigger>
-        <TabsTrigger value="radar">Flight Radar</TabsTrigger>
-        <TabsTrigger value="pizza">Pizza Tracker</TabsTrigger>
-        <TabsTrigger value="polymarket">Polymarket</TabsTrigger>
-      </TabsList>
-      <FlightRadar />
-      <PizzaTracker />
-      <TwitterFeed />
-      <PolymarketPredictions/>
-    </Tabs>
+    <>
+      <TabsContent value="radar">
+        <FlightRadar />
+      </TabsContent>
+      <TabsContent value="pizza">
+        <PizzaTracker />
+      </TabsContent>
+      <TabsContent value="twitter">
+        <TwitterFeed />
+      </TabsContent>
+      <TabsContent value="polymarket">
+        <PolymarketPredictions />
+      </TabsContent>
+    </>
   )
 }
 
